@@ -1,30 +1,30 @@
 
 <?php 
-function getAddress(){
+function getseries(){
     
     
 
-if (isset ($_POST['nomefilme'])){
-    $filme = $_POST['nomefilme'];
+if (isset ($_POST['serieName'])){
+    $filme = $_POST['serieName'];
     
-    $address = getAddressomdbapi($filme);
-    $respostas = (object)[
-        'Title' => $address->name,
-        'Year' => $address->premiered,
-        'Type' => $address->genres[0],
-        'Poster' => $address->image->original
+    $series = getSitcom($filme);
+    $reply = (object)[
+        'Title' => $series->name,
+        'Year' => $series->premiered,
+        'Type' => $series->genres[0],
+        'Poster' => $series->image->original
     ];
  
 }else {
-    $respostas = addressEmpty();
+    $reply = seriesEmpty();
    
 }
 
 
-return $respostas;
+return $reply;
 }
 
-function addressEmpty(){
+function seriesEmpty(){
     return (object)[
         'Title' => '',
         'Year' => '',
@@ -33,7 +33,7 @@ function addressEmpty(){
     ];
 }
 
-function getAddressomdbapi(String $filme){
+function getSitcom(String $filme){
     $url = "http://api.tvmaze.com/singlesearch/shows?q='{$filme}'";
     return json_decode(file_get_contents($url));
 

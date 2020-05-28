@@ -1,49 +1,46 @@
-
-
 <?php
-include('informações.php');
+    include_once ('informações.php');
+    $address = getAddress();
+    
 ?>
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>Seriados</title>
+    <meta charset="utf-8">
+    <meta  name = "viewport"  content = " width = largura do dispositivo, escala inicial = 1.0 " >
+    <title>Zariados</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+
 </head>
-<body>
+
+<!-- <body onload = "carregar()"> -->
 <div class="container">
-  <h2>Seriados</h2>  
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-<?php
-$seriados = getSeriados();
-foreach ($seriados as $seriado) {
-    echo"<div class='carousel-inner'> <div class='item active'>
-    <img src='{$seriado->image->medium}' alt='' style='width:100%;'>
-  </div></div> <a class='left carousel-control' href='#myCarousel' data-slide='prev'>
-  <span class='glyphicon glyphicon-chevron-left'></span>
-  <span class='sr-only'>Previous</span>
-</a>
-<a class='right carousel-control' href='#myCarousel' data-slide='next'>
-  <span class='glyphicon glyphicon-chevron-right'></span>
-  <span class='sr-only'>Next</span>
-</a>";
+    <header>
     
-    //echo"<p>{$seriado->summary}</p><br>";
-}
-
-?>
-
-</div>
+    </header>
+<article>
+        <div class="text-center">
+            <h1 class="Titulo">Zariados</h1>
+        </div><br>
+        <form action="." method="POST">
+        <div class="form-group text-center">
+            <img src="<?php echo $address->Poster ?? "" ?>" width="140px">
+        </div>
+        <div class="form-group">
+        
+            <input type="text" class="form-control" id="Filme" aria-describedby="SearchFilm" placeholder="Digite o nome do seriado"name="nomefilme" value="<?php echo $address->Title ?? '' ?>">
+        </div>
+        <button type="submit" id="botao" class="btn btn-primary">Submit</button><br><br>
+        <div class="form-group">        
+            <input type="text" class="form-control" id="anodofilme" name="ano" value= "<?php echo $address->Year ?? '' ?>">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="Tipodofilme" name="tipo" value= "<?php echo $address->Type ?? '' ?>">
+        </div>
+    </form>
+</article>
 </div>
 </body>
 </html>
